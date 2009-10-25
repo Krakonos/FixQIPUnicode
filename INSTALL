@@ -1,0 +1,77 @@
+How to compile & install FixQIPUnicode
+======================================
+
+1) Get Psi sources from git
+2) Get & apply patch for plugins
+3) Compile psi with plugins enabled
+4) Set path to psi sources & compile plugin
+5) Copy plugin
+6) Enjoy!
+
+
+1) Get Psi sources from git
+---------------------------
+For more information, see Psi official wiki: 
+	http://psi-im.org/wiki/Build_Instructions_Qt4
+
+In short, this should sufice:
+
+$ git clone git://git.psi-im.org/psi.git
+$ cd psi
+$ git submodule init
+$ git submodule update
+
+
+2) Get & apply patch for plugins
+--------------------------------
+Get the patch here: 
+	http://psi-dev.googlecode.com/svn/trunk/patches/520-psi-fix-ability-to-modify-events-from-plugins.diff
+
+And apply it:
+
+$ cd psi
+$ patch -p1 < path-to-patch.diff
+
+
+3) Compile psi with plugins enabled
+-----------------------------------
+
+$ cd psi
+
+Edit psi.qc and uncomment line mentioning plugins. Run qconf to generate 
+new configure script:
+
+$ qconf psi.qc
+
+Run configure and make:
+
+$ ./configure --enable-plugins
+$ make
+
+You can now run psi from repo, or install it if you wish.
+
+4) Set path to psi sources & compile plugin
+-------------------------------------------
+
+$ cd fixqipunicode
+$ vi fixqipunicode.pro
+
+Edit path on first line (include directive) to point to 
+	src/plugins/psiplugin.pri
+in your plugin psi sources.
+
+5) Copy plugin
+--------------
+
+You can now copy libfixqipunicode.so to you psi plugin path. This will
+usually be 
+	~/.psi/plugins/
+You can now run psi, enable plugin (Options->Plugins) and restart psi to
+actually load plugins (yes, it's silly, but plugin support in Psi is really 
+experimental)
+
+6) Enjoy!
+---------
+
+You can write your friends with QIP via ICQ transport and should see the 
+expected characters!
