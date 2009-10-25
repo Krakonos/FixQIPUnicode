@@ -1,0 +1,17 @@
+FixQIPUnicode
+=============
+
+This is a simple plugin to search & replace badly encoded characters
+in czech alphabet sent by QIP 2005. You will need git version of Psi with
+plugins enabled (disabled by default) to use it, as the plugins are work
+in progress and as of now (Octobe 25., 2009) still unstable.
+
+You will also need a patch to Psi, that allows plugins to change message 
+content. This patch is not invasive, it does in fact just remove "const" 
+operator in plugin interface. This patch can be found at:
+
+http://psi-dev.googlecode.com/svn/trunk/patches/520-psi-fix-ability-to-modify-events-from-plugins.diff
+
+The patch is also submitted to Psi as Feature #79:
+
+http://redmine.psi-im.org/issues/show/79
